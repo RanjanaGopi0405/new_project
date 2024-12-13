@@ -4,3 +4,16 @@
  * @cliArgs --device "F280013x" --package "64PM" --part "F280013x_64PM" --context "system" --product "C2000WARE@5.00.00.00"
  * @versions {"tool":"1.20.0+3587"}
  */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const gpio  = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1 = gpio.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+gpio1.$name           = "myGPIO0";
+gpio1.direction       = "GPIO_DIR_MODE_OUT";
+gpio1.gpioPin.$assign = "GPIO22";
