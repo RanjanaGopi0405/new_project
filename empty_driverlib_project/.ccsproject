@@ -10,8 +10,7 @@
 	<isElfFormat value="true"/>
 	<rts value="libc.a"/>
 	<createSlaveProjects value=""/>
-	<isTargetManual value="true"/>
-	<templateProperties value="id=i2c_ex1_loopback.projectspec.i2c_ex1_loopback"/>
-	<origin value="C:\ti\C2000Ware_5_00_00_00\driverlib\f280013x\examples\i2c\CCS\i2c_ex1_loopback.projectspec"/>
+	<templateProperties value="id=empty_driverlib_project.projectspec.empty_driverlib_project"/>
+	<origin value="C:\ti\C2000Ware_5_00_00_00\driverlib\f280013x\examples\empty_projects\CCS\empty_driverlib_project.projectspec"/>
 	<filesToOpen value=""/>
 </projectOptions>
