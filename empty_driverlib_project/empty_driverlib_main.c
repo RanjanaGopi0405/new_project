@@ -51,57 +51,55 @@
 #include "device.h"
 #include "board.h"
 #include "c2000ware_libraries.h"
-
+#include "RfRemote.h"
 //
 // Main
 //
+ int rfSignal;
+volatile RFSignalContext RfAsGpio;
+volatile RemoteControlContext RfRemote;
+Rf_RxHandle_t Rf_RxHandle={0};
+__interrupt void epwm0ISR(void);
+
 void main(void)
 {
-
-    //
-    // Initialize device clock and peripherals
-    //
+    initializeRfContextANDRemoteContext(&RfAsGpio,&RfRemote,&Rf_RxHandle);
     Device_init();
+        Device_initGPIO();
+        Interrupt_initModule();
+        Interrupt_initVectorTable();
 
-    //
-    // Disable pin locks and enable internal pull-ups.
-    //
-    Device_initGPIO();
 
-    //
-    // Initialize PIE and clear PIE registers. Disables CPU interrupts.
-    //
-    Interrupt_initModule();
+        Interrupt_register(INT_EPWM1, &epwm0ISR);
 
-    //
-    // Initialize the PIE vector table with pointers to the shell Interrupt
-    // Service Routines (ISR).
-    //
-    Interrupt_initVectorTable();
+        SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
+        Board_init();
 
-    //
-    // PinMux and Peripheral Initialization
-    //
-    Board_init();
+     //   GPIO_setDirectionMode(0, GPIO_DIR_MODE_OUT);
 
-    //
-    // C2000Ware Library initialization
-    //
-    C2000Ware_libraries_init();
+        EPWM_setActionQualifierAction(myEPWM0_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_HIGH, EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO);
+        EPWM_setActionQualifierAction(myEPWM0_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
 
-    //
-    // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
-    //
-    EINT;
-    ERTM;
+        SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
+        Interrupt_enable(INT_EPWM1);
+
+        EINT;
+        ERTM;
+
 
     while(1)
     {
-        GPIO_writePin(myGPIO0, 0);
-        DEVICE_DELAY_US(500000);
-        GPIO_writePin(myGPIO0, 1);
-        DEVICE_DELAY_US(500000);
+
     }
+}
+
+__interrupt void epwm0ISR(void)
+{
+
+     rfSignal= GpioDataRegs.GPADAT.bit.GPIO0;
+    RFSignalReadingAsGpio(&RfAsGpio,rfSignal);
+    RfDataValidataion(&RfAsGpio,&RfRemote);
+    rf_rx_routine(&RfAsGpio,&Rf_RxHandle,&RfRemote);
 }
 //
 // End of File

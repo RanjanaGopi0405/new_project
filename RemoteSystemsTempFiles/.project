@@ -9,4 +9,11 @@
 	<natures>
 		<nature>org.eclipse.rse.ui.remoteSystemsTempNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>RfRemote</name>
+			<type>2</type>
+			<location>C:/Users/AATPL0056/Documents/RfRemote</location>
+		</link>
+	</linkedResources>
 </projectDescription>

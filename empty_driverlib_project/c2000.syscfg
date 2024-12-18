@@ -8,12 +8,35 @@
 /**
  * Import the modules used in this configuration.
  */
-const gpio  = scripting.addModule("/driverlib/gpio.js", {}, false);
-const gpio1 = gpio.addInstance();
+const epwm  = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1 = epwm.addInstance();
 
 /**
  * Write custom configuration values to the imported modules.
  */
-gpio1.$name           = "myGPIO0";
-gpio1.direction       = "GPIO_DIR_MODE_OUT";
-gpio1.gpioPin.$assign = "GPIO22";
+epwm1.$name                                                    = "myEPWM0";
+epwm1.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
+epwm1.epwmTimebase_period                                      = 1215;
+epwm1.epwmCounterCompare_cmpA                                  = 500;
+epwm1.epwmEventTrigger_enableInterrupt                         = true;
+epwm1.epwmDeadband_enableRED                                   = true;
+epwm1.epwmDeadband_delayRED                                    = 300;
+epwm1.epwmDeadband_enableFED                                   = true;
+epwm1.epwmDeadband_delayFED                                    = 500;
+epwm1.epwmDeadband_dbControlGld                                = true;
+epwm1.epwmDeadband_redGld                                      = true;
+epwm1.epwmDeadband_fedGld                                      = true;
+epwm1.epwmEventTrigger_interruptEventCount                     = "3";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwm.epwm_aPin.$assign                                   = "GPIO0";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+epwm1.epwm.$suggestSolution           = "EPWM3";
+epwm1.epwm.epwm_bPin.$suggestSolution = "A10/C10, GPIO230";
