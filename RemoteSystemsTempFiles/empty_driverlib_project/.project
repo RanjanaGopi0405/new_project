@@ -26,44 +26,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>F2837xD_Cla_typedefs.h</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/F2837xD_Cla_typedefs.h</locationURI>
-		</link>
-		<link>
-			<name>F2837xD_Examples.h</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/F2837xD_Examples.h</locationURI>
-		</link>
-		<link>
-			<name>F2837xD_can.h</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/F2837xD_can.h</locationURI>
-		</link>
-		<link>
-			<name>F2837xD_device.h</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/F2837xD_device.h</locationURI>
-		</link>
-		<link>
-			<name>F28x_Project.h</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/F28x_Project.h</locationURI>
-		</link>
-		<link>
 			<name>driverlib.lib</name>
 			<type>1</type>
 			<locationURI>COM_TI_C2000WARE_SOFTWARE_PACKAGE_INSTALL_DIR/driverlib/f280013x/driverlib/ccs/Debug/driverlib.lib</locationURI>
-		</link>
-		<link>
-			<name>device/RfRemote.c</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Documents/RfRemote/RfRemote.c</locationURI>
-		</link>
-		<link>
-			<name>device/RfRemote.h</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Documents/RfRemote/RfRemote.h</locationURI>
 		</link>
 	</linkedResources>
 	<variableList>

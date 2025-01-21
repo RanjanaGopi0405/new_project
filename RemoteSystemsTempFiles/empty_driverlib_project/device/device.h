@@ -75,37 +75,6 @@ extern "C"
 //
 // LEDs
 //
-typedef struct {
-    union {
-        uint32_t all;     // Access all 32 bits at once
-        struct {
-            uint16_t GPIO0:1;   // Bit 0
-            uint16_t GPIO1:1;   // Bit 1
-            uint16_t GPIO2:1;   // Bit 2
-            uint16_t GPIO3:1;   // Bit 3
-            uint16_t GPIO4:1;   // Bit 4
-            uint16_t GPIO5:1;   // Bit 5
-            uint16_t GPIO6:1;   // Bit 6
-            uint16_t GPIO7:1;   // Bit 7
-            uint16_t GPIO8:1;   // Bit 8
-            uint16_t GPIO9:1;   // Bit 9
-            uint16_t GPIO10:1;  // Bit 10
-            uint16_t GPIO11:1;  // Bit 11
-            uint16_t GPIO12:1;  // Bit 12
-            uint16_t GPIO13:1;  // Bit 13
-            uint16_t GPIO14:1;  // Bit 14
-            uint16_t GPIO15:1;  // Bit 15
-        } bit;
-    } GPADAT;  // GPIO A Data Register
-} GPIO_DATA_REGS;
-
-// Define GpioDataRegs as a volatile pointer to the memory-mapped GPIO registers
-#define GpioDataRegs (*(volatile GPIO_DATA_REGS *)0x00007C00)
-
-
-
-
-
 #define DEVICE_GPIO_PIN_LED1        20U             // GPIO number for LED4
 #define DEVICE_GPIO_PIN_LED2        22U             // GPIO number for LED5
 #define DEVICE_GPIO_CFG_LED1        GPIO_20_GPIO20  // "pinConfig" for LED4

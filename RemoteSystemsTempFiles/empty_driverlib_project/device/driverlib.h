@@ -62,7 +62,7 @@
 #include "flash.h"
 #include "gpio.h"
 #include "hrpwm.h"
-#include "i2c.h"
+//#include "i2c.h"
 #include "interrupt.h"
 #include "memcfg.h"
 #include "pin_map.h"
